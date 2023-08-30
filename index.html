@@ -1,0 +1,4491 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1 {
+      margin: 0;
+    }
+    .header {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      z-index: 10;
+      background-color: lemonchiffon;
+      width: 100%;
+
+
+    }
+
+    .dataContent {
+      padding-top: 180px;
+      display: block;
+    }
+
+    .dataShow {
+      display: block;
+    }
+
+    .dataNone {
+      display: none;
+    }
+
+    .clkBtn {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .divFlex {
+      display: flex;
+    }
+
+    .sheetSelect {
+      padding-top: 0px;
+    }
+
+    .speed {
+      padding-top: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+
+    <h1>
+      韓国語単語帳 </h1>
+    <div>
+      <label for="tts-select">合成言語：</label><select id="tts-select"></select>
+    </div>
+    <input type="text" id="myInput" placeholder="検索文字列を入力。">
+    <button  type="button" onclick="serchSelect()" id="btnSerch">検索</button>
+    <div class="divFlex">
+      <div class="sheetSelect">
+
+        <label for="sheet-select">シート選択：</label><select id="sheet-select" name="sheetSelect">
+          <option value="フォームの回答 1">フォームの回答 1</option>
+          <option value="シート2">シート2</option>
+        </select>
+      </div>
+      <div class="speed">
+        <label for="speech-Speed">　　音声スピード:</label>
+
+        <select name="speechSpeed" id="speech-Speed">
+          <option value="1.0">1.0</option>
+          <option value="0.9">0.9</option>
+          <option value="0.8">0.8</option>
+          <option value="0.7">0.7</option>
+          <option value="0.6">0.6</option>
+          <option value="0.5">0.5</option>
+          <option value="1.1">1.1</option>
+          <option value="1.2">1.2</option>
+          <option value="1.3">1.3</option>
+          <option value="1.4">1.4</option>
+          <option value="1.5">1.5</option>
+          <option value="1.6">1.6</option>
+          <option value="1.7">1.7</option>
+          <option value="1.8">1.8</option>
+          <option value="1.9">1.9</option>
+          <option value="2.0">2.0</option>
+
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="dataContent">
+    <table border="1">
+
+
+
+      <tbody>
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            単語 </td>
+
+
+
+          <td>
+            単語日本語 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            例文 </td>
+
+          <td>
+            例文日本語 </td>
+          <td>
+            備考欄 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            알차다 </td>
+
+
+
+          <td>
+            内容が充実している </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            알찬 하루 </td>
+
+          <td>
+            充実した一日 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            호프집 </td>
+
+
+
+          <td>
+            ビヤガーデン </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            호프집에서 회식을 했어요. </td>
+
+          <td>
+            ビヤガーデンで会食をしました。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            쩔쩔매다 </td>
+
+
+
+          <td>
+            圧倒されてたじろぐ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            덕구 어머니가 어찌할지 홍정두가 어찌 쩔쩔맬지 안 봐도 훤했다. </td>
+
+          <td>
+            トックのお母さんがどうするか、ホン・チョンドがどんなふうにたじろぐか見なくても明らかだった。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            귀띔하다 </td>
+
+
+
+          <td>
+            耳打ちする </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            저녁에 그 여자와 같이 오라고 살짝 귀띔해 주었다. </td>
+
+          <td>
+            夕方にその女と一緒に来いとこっそり耳打ちしてやった。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            자르다 </td>
+
+
+
+          <td>
+            (言葉、仕事などの)区切りをつける、けりをつける </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            딱 잘라서 말해 봐. </td>
+
+          <td>
+            くどくど言わずに手短に話してみろ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            사자 </td>
+
+
+
+          <td>
+            ライオン </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            나는 동물 중에서 사자가 제일 좋아. </td>
+
+          <td>
+            私は動物の間でライオンが好きです。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            시다 </td>
+
+
+
+          <td>
+            酸っぱい </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            오렌지 주스가 너무 셔요. </td>
+
+          <td>
+            オレンジジュースが酸っぱ過ぎます。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꺾다 </td>
+
+
+
+          <td>
+            (気勢などを)くじく、へし折る </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            상대의 콧대를 꺾어 놓다. </td>
+
+          <td>
+            相手の鼻をへし折る。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            골짜기 </td>
+
+
+
+          <td>
+            谷 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            산을 넘고 골짜기를 건너 </td>
+
+          <td>
+            山を越えて谷を渡ります </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            철 </td>
+
+
+
+          <td>
+            時季 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            모내기 철 </td>
+
+          <td>
+            田植えの時期 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            조르다 </td>
+
+
+
+          <td>
+            せがむ、ねだる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            용돈을 조르다 </td>
+
+          <td>
+            小遣いをせびる </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            홀가분하다 </td>
+
+
+
+          <td>
+            (気持ちが)軽い </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            홀가분한 기분으로 여행을 떠나다. </td>
+
+          <td>
+            軽い気分で旅行に出ます。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이왕이면 </td>
+
+
+
+          <td>
+            どうせなら </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이왕이면 세벳돈은 많이 주는게 좋지. </td>
+
+          <td>
+            どうせならお年玉は多く上げるのが良い。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            저렴 </td>
+
+
+
+          <td>
+            安い </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            어디서 더 저렴하게 구입할 수 있어요? </td>
+
+          <td>
+            どこで安く購入できますか？ </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            쓰레기 </td>
+
+
+
+          <td>
+            ごみ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            쓰레기는 제때에 버려야 돼요. </td>
+
+          <td>
+            ごみは時間通りに廃棄する必要があります。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            청바지 </td>
+
+
+
+          <td>
+            ジーンズ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            너는 청바지가 참 잘 어을리는 것 같아. </td>
+
+          <td>
+            あなたはジーンズが本当によく似合うと思う。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            잘못 </td>
+
+
+
+          <td>
+            間違っている </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            그는 잘못 알고 내 우산을 가지고 갔다. </td>
+
+          <td>
+            彼は間違って私の傘を持って行った。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꺼림칙하다 </td>
+
+
+
+          <td>
+            気が進まない </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            저 사람과 만나는 것은 어쩐지 꺼림칙하다. </td>
+
+          <td>
+            あの人に会うのはなんとなく気が重い。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            털썩 </td>
+
+
+
+          <td>
+            どっかりと </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            지쳐서 마루에 털썩 주저앉았다. </td>
+
+          <td>
+            疲れてマルにどっかりと座り込んだ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            튀기다 </td>
+
+
+
+          <td>
+            はね飛ばす </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            침을 튀기면서 이야기하다. </td>
+
+          <td>
+            唾を飛ばしながら話す。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            악물다 </td>
+
+
+
+          <td>
+            歯を食いしばる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이를 악물고 공부하다. </td>
+
+          <td>
+            歯を食いしばって勉強する。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            다잡다 </td>
+
+
+
+          <td>
+            気を引き締める </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            마음을 다잡고 시험 공부를 한다. </td>
+
+          <td>
+            気を引き締めて試験勉強をする。 </td>
+          <td>
+            마음을 다잡다の形で </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            머물다 </td>
+
+
+
+          <td>
+            滞在する </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            어느 호텔에 머물렀어요? </td>
+
+          <td>
+            どのホテルに泊まりましたか？ </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            싸다 </td>
+
+
+
+          <td>
+            安い </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            좀 더 싼 것은 없습니까? </td>
+
+          <td>
+            もっと安いのはありますか？ </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            뜨겁다 </td>
+
+
+
+          <td>
+            熱い </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            목욕물이 너무 뜨겁다. </td>
+
+          <td>
+            お風呂は暑すぎます。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            씩씩하다 </td>
+
+
+
+          <td>
+            りりしい </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            씩씩한 청년 </td>
+
+          <td>
+            りりしい青年 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            낫다 </td>
+
+
+
+          <td>
+            より良い </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            그래도 죽기보다는 낫다. </td>
+
+          <td>
+            それでも死ぬよりはましだ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            대낮 </td>
+
+
+
+          <td>
+            真昼 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            대낮부터 술타령이다. </td>
+
+          <td>
+            昼間から酒浸りだ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            묶다 </td>
+
+
+
+          <td>
+            (手・足などが)縛られる、足止めを食う </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            폭설로 발이 묶였다. </td>
+
+          <td>
+            大雪のために足止めを食った。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꾸다 </td>
+
+
+
+          <td>
+            夢を見る </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            복권이 당첨된 꿈을 꾸었다. </td>
+
+          <td>
+            宝くじが当たった夢を見た。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            말짱하다 </td>
+
+
+
+          <td>
+            正気だ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            아무리 취해도 정신만은 말짱하다. </td>
+
+          <td>
+            いくら酔っても気だけは確かだ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            유통기한 </td>
+
+
+
+          <td>
+            賞味期限 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이 떡은 유통 기한이 지났다. </td>
+
+          <td>
+            この餅は賞味期限が切れた。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            포장하다 </td>
+
+
+
+          <td>
+            包装する </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            상자에 넣어 포장하다. </td>
+
+          <td>
+            箱に入れて包装する。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            그다지 </td>
+
+
+
+          <td>
+            とても </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            그다지 가고 싶지도 않다. </td>
+
+          <td>
+            あまり行きたくない。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            개학 </td>
+
+
+
+          <td>
+            始業 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            학교는 내일부터 개학이다. </td>
+
+          <td>
+            学校は明日から始まります。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            장바구니 </td>
+
+
+
+          <td>
+            買い物かご </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            장바구니를 챙기다. </td>
+
+          <td>
+            買い物かごを用意する。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            치르다 </td>
+
+
+
+          <td>
+            支払う </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            빚진 돈을 치르다. </td>
+
+          <td>
+            借金を支払う </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            굽히다 </td>
+
+
+
+          <td>
+            曲げる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            몸을 앞으로 굽히다. </td>
+
+          <td>
+            体をかがめる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            씨 </td>
+
+
+
+          <td>
+            (父の)血筋 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            빨갱이들은 씨를 말려 버리겠어. </td>
+
+          <td>
+            アカたちは一人残らず皆殺しにしてやるぞ。 </td>
+          <td>
+            씨(를)말리다 一人残らず皆殺しにする </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            무릅쓰다 </td>
+
+
+
+          <td>
+            (困難、恥などを)顧みない </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            어떤 희생을 무릅써고 아이들을 대학에 들여보내고 싶었다. </td>
+
+          <td>
+            どんな犠牲を払ってでも子供たちを大学に入れたかった。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            되찾다 </td>
+
+
+
+          <td>
+            取り戻す </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이전의 명성을 되찾다. </td>
+
+          <td>
+            以前の名声を取り戻す。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이끌다 </td>
+
+
+
+          <td>
+            (手などを)引く </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            딸아이의 손을 이끌고 산책을 갔다 왔어. </td>
+
+          <td>
+            娘の手を引いて散歩に行って来ました。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            달래다 </td>
+
+
+
+          <td>
+            なだめすかす </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            사람을 살살 달래어 보낸다. </td>
+
+          <td>
+            人をうまくなだめすかして帰らせる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            공연하다 </td>
+
+
+
+          <td>
+            無駄な </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            공연한 걱정을 끼쳐 드려 죄송합니다. </td>
+
+          <td>
+            いらぬ心配をおかけして申し訳ございません。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            말머리 </td>
+
+
+
+          <td>
+            話題 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            선생님이 나오시자 우리는 슬며시 말머리를 돌렸다. </td>
+
+          <td>
+            先生がいらっしゃると僕たちはそれとなく話題を転じた。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            굵다 </td>
+
+
+
+          <td>
+            太い </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            굵게 쓴 글씨 </td>
+
+          <td>
+            太く書いた文字 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            넘나들다 </td>
+
+
+
+          <td>
+            出入りする </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            국경을 넘나들다. </td>
+
+          <td>
+            国境を往来する。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            뜨다 </td>
+
+
+
+          <td>
+            上る・昇る </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            해가 뜨기 시작했다. </td>
+
+          <td>
+            太陽が昇り始めました。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            채우다 </td>
+
+
+
+          <td>
+            満たす </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            허기진 배를 채우다. </td>
+
+          <td>
+            ひもじい腹を満たす。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            흩어지다 </td>
+
+
+
+          <td>
+            散らばる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            어린이들이 사방에 흩어져 보물찾기를 했다. </td>
+
+          <td>
+            子供たちはあちこちに散らばって宝探しをした。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            드러내다 </td>
+
+
+
+          <td>
+            さらけ出す </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            회사의 비밀을 드러낸다. </td>
+
+          <td>
+            会社の秘密を暴露する。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            넘어가다 </td>
+
+
+
+          <td>
+            騙される </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            달콤한 말에 넘어가다. </td>
+
+          <td>
+            甘い言葉に騙される。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            홀딱 </td>
+
+
+
+          <td>
+            まんまと </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            홀딱 속았다. </td>
+
+          <td>
+            まんまと騙された。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            떼다 </td>
+
+
+
+          <td>
+            取り除く </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            앨범에서 사진을 뗐다. </td>
+
+          <td>
+            アルバムから写真をはがした。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            속다 </td>
+
+
+
+          <td>
+            騙される </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            두 번 다시 속지 않을 테다. </td>
+
+          <td>
+            二度とは騙されまい。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            부릅뜨다 </td>
+
+
+
+          <td>
+            (目を)むく </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            부릅뜬 두 눈에 노기가 사려 있었다. </td>
+
+          <td>
+            かっと見開いた両目には怒りがこもっていた。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            마구잡이 </td>
+
+
+
+          <td>
+            手当たり次第に </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            음주 운전자를 마구잡이로 붙잡았다. </td>
+
+          <td>
+            飲酒運転の人を手当たり次第にひっ捕らえた。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            진작 </td>
+
+
+
+          <td>
+            ずっと前に </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이 일은 진작 고백했어야 했는데. </td>
+
+          <td>
+            このことはずっと前に告白すべきだったが。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            까불다 </td>
+
+
+
+          <td>
+            しきりにふざける </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            그렇게 혼나고도 또 까분다. </td>
+
+          <td>
+            そんなにひどい目にあっても懲りずにまたふざける。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            도무지 </td>
+
+
+
+          <td>
+            まったく </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            도무지 효과가 없다. </td>
+
+          <td>
+            まったく効き目がない。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            어지간히 </td>
+
+
+
+          <td>
+            ほどよく </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            운동도 어지간히 하지 않으면 해가 된다. </td>
+
+          <td>
+            運動もほどほどにしないと毒になる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            영문 </td>
+
+
+
+          <td>
+            理由 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            그 여자가 행방 부명된 영문을 알 수 없다. </td>
+
+          <td>
+            彼女が行方不明になった理由がわからない。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            깝짝 </td>
+
+
+
+          <td>
+            びっくりするようす </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            깜짝 놀랄 만한 비싼 값 </td>
+
+          <td>
+            驚くべき高価な価格 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            훔치다 </td>
+
+
+
+          <td>
+            ぬぐう </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            흐르는 눈물을 옷소매로 훔치다. </td>
+
+          <td>
+            流れる涙を袖で拭う。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            말투 </td>
+
+
+
+          <td>
+            口調 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            싸음하려는 말투구나. </td>
+
+          <td>
+            けんか腰の口ぶりだな。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            지체 </td>
+
+
+
+          <td>
+            遅滞 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이 이상의 지체는 허용되지 않는다. </td>
+
+          <td>
+            これ以上の遅滞は許されません。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            내키다 </td>
+
+
+
+          <td>
+            乗り気になる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            웬일인지 마음이 내키지 않는다. </td>
+
+          <td>
+            なぜか気が乗らない。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            버럭 </td>
+
+
+
+          <td>
+            かっと </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            버럭 소리를 지르다. </td>
+
+          <td>
+            かっと声を張り上げる。 </td>
+          <td>
+            いきなり怒ったり大声を出したりする様子 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            슬슬 </td>
+
+
+
+          <td>
+            そろそろ、ぼつぼつ、ゆるゆる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            슬슬 걸어가자꾸나. </td>
+
+          <td>
+            ゆっくり歩いて行こうよ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            치우다 </td>
+
+
+
+          <td>
+            片づける </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            눈을 치우다. </td>
+
+          <td>
+            雪かきをする。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            마냥 </td>
+
+
+
+          <td>
+            ひたすら、ただ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            어머니가 마냥 그립기만 하다. </td>
+
+          <td>
+            母がひたすら恋しいばかりだ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            기둥 </td>
+
+
+
+          <td>
+            柱 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            한 집안의 기둥을 잃다. </td>
+
+          <td>
+            一家の柱を失う。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            새우다 </td>
+
+
+
+          <td>
+            徹夜する </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            시험이 가까워져 밤을 새워 공부하다. </td>
+
+          <td>
+            試験が近いので徹夜で勉強している。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꾸벅거리다 </td>
+
+
+
+          <td>
+            こっくりこっくりする </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            수업 시간에 꾸벅거리다 졸다. </td>
+
+          <td>
+            授業時間にこっくりこっくりと居眠りする。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            때리다 </td>
+
+
+
+          <td>
+            殴る </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            사람을 막대로 때리다. </td>
+
+          <td>
+            人を棒で殴る。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            주저 </td>
+
+
+
+          <td>
+            ためらいます </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            주저하지 말고 빨리 결정해라. </td>
+
+          <td>
+            すぐに決めることを躊躇しないでください。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            뻔뻔하다 </td>
+
+
+
+          <td>
+            あつかましい、ずうずうしい </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            모르는 체하고 뻔뻔한 소리 하지 마. </td>
+
+          <td>
+            知らないふりしてずうずうしいことを言うな。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            걷어붙이다 </td>
+
+
+
+          <td>
+            （袖・股引などを）まくり上げる、たくし上げる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            팔을 걷어붙이고 일하다. </td>
+
+          <td>
+            腕まくりをして仕事をする。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            날뛰다 </td>
+
+
+
+          <td>
+            暴れまわる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            미친듯이 날뛰다. </td>
+
+          <td>
+            狂ったように暴れまわる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            무뚝뚝하다 </td>
+
+
+
+          <td>
+            ぶっきらぼうだ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            말은 무뚝뚝하지만 속마음이 곱다. </td>
+
+          <td>
+            言葉はぶっきらぼうだが気は優しい。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            떳떳하다 </td>
+
+
+
+          <td>
+            堂々としている </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            조금도 나쁜 짓을 아니했으니 내 양심은 떳떳하다. </td>
+
+          <td>
+            少しも悪いことをしていないから私の心はびくともしない。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            주눅 </td>
+
+
+
+          <td>
+            気おくれ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            그 남자는 주눅 든 기색도 없다. </td>
+
+          <td>
+            彼は臆する色もない。 </td>
+          <td>
+            주눅 들다 いじける、委縮する </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            튀다 </td>
+
+
+
+          <td>
+            素早く逃げる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            범인이 튀다. </td>
+
+          <td>
+            犯人が飛んで逃げる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            마음(을)잡다 </td>
+
+
+
+          <td>
+            心を入れ替える </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이제까지와는 달리 마음을 잡고 일에 열중하고 있다. </td>
+
+          <td>
+            これまでとは違って心を入れ替えて仕事に精を出している。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이다 </td>
+
+
+
+          <td>
+            頭に載せる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            아주머니들이 물건을 머리에 이고 다닌다. </td>
+
+          <td>
+            おばさんたちがものを頭にのせて通う。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            담다 </td>
+
+
+
+          <td>
+            (器などに)入れる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            바구니에 담은 딸기 </td>
+
+          <td>
+            かごに入れたイチゴ </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            바래다 </td>
+
+
+
+          <td>
+            (色などが)あせる、さめる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            색이 바랜 저고리 </td>
+
+          <td>
+            色があせたチョゴリ </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            재수 </td>
+
+
+
+          <td>
+            運、縁起 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            재수 없는 소리 마라. </td>
+
+          <td>
+            縁起でもないことを言うな。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            둘러보다 </td>
+
+
+
+          <td>
+            見回す </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            아무리 사방을 둘러보아도 사람은 보이지 않았다. </td>
+
+          <td>
+            どんなに周りを見回しても、人々に会えませんでした。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            낡다 </td>
+
+
+
+          <td>
+            古い </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            옷이 낡다. </td>
+
+          <td>
+            服は古いです。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            딴 </td>
+
+
+
+          <td>
+            違う </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            딴 가게로 가자. </td>
+
+          <td>
+            別の店に行きましょう。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꽁무니 </td>
+
+
+
+          <td>
+            尻 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            여자의 꽁무니를 따라다니다. </td>
+
+          <td>
+            女性の尻を追い回す。 </td>
+          <td>
+            꽁무니(를)따라다니다 尻を追い回す </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            늘어나다 </td>
+
+
+
+          <td>
+            増加する </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            인구가 늘어나다. </td>
+
+          <td>
+            人口が増加します </td>
+          <td>
+            줄어들다は対語 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            누비다 </td>
+
+
+
+          <td>
+            (物や人などの間を)縫って進む </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            인파 속을 누비고 나아간다. </td>
+
+          <td>
+            人並みを縫って進む。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            아슬아슬 </td>
+
+
+
+          <td>
+            気味の悪い </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            아슬아슬한 극적인 순간 </td>
+
+          <td>
+            息をのむような劇的な瞬間 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            난폭 </td>
+
+
+
+          <td>
+            乱暴 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            난폭한 말씨 </td>
+
+          <td>
+            乱暴な言葉遣い </td>
+          <td>
+            乱暴 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            늘어서다 </td>
+
+
+
+          <td>
+            (列をなして)並ぶ、立ち並ぶ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            선로를 따라 늘어선 포플라 나무 </td>
+
+          <td>
+            線路伝いに立ち並んだポプラの並木 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            달라지다 </td>
+
+
+
+          <td>
+            変わる、変化する </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            그러면 이야기가 달라진다. </td>
+
+          <td>
+            それなら話が違ってくる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            가까스로 </td>
+
+
+
+          <td>
+            かろうじて </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            가까스로 도망쳤다 </td>
+
+          <td>
+            私はなんとか逃げました </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            본체만체 </td>
+
+
+
+          <td>
+            見て見ぬふりをする </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            남이 고생하는 것을 보고도 본체만체한다. </td>
+
+          <td>
+            人が苦労するのを見ながら知らん顔をする。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            들여다보다 </td>
+
+
+
+          <td>
+            (外から内側を)のぞく、覗き見る。 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            창문으로 들여다보다 </td>
+
+          <td>
+            窓からのぞく。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            붙다 </td>
+
+
+
+          <td>
+            つく、くっつく、張ってある </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            벽에 붙은 그림을 떼었다. </td>
+
+          <td>
+            壁に貼ってあった絵を剥がした。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꾸미다 </td>
+
+
+
+          <td>
+            作る、仕立てる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            뜰 한편에 화단을 꾸미다. </td>
+
+          <td>
+            庭の片側に花壇を作る。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꾸미다 </td>
+
+
+
+          <td>
+            でっちあげる、作り上げる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꾸민 이야기 </td>
+
+          <td>
+            作り話 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            쉽사리 </td>
+
+
+
+          <td>
+            たやすく、簡単に、わけなく </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            쉽사리 대학에 합격했다. </td>
+
+          <td>
+            難なく大学に合格した。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            뜨다 </td>
+
+
+
+          <td>
+            すくう、汲む </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            사발로 물을 뜨다. </td>
+
+          <td>
+            鉢で水を汲む。 </td>
+          <td>
+            떠 주시겠어요 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            버티다 </td>
+
+
+
+          <td>
+            耐えられます </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            승리는 잘 버티는 자에게 있다. </td>
+
+          <td>
+            勝利はよく耐える者にある。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            선 </td>
+
+
+
+          <td>
+            線 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            선을 대다 </td>
+
+          <td>
+            コネをつける </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            못하다 </td>
+
+
+
+          <td>
+            (만/보다)못하の形で　…より劣る </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            형이 아우만 못하다. </td>
+
+          <td>
+            兄が弟に劣る。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            당황하다 </td>
+
+
+
+          <td>
+            慌てる、うろたえる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            급보를 받고 당황하다. </td>
+
+          <td>
+            急報を受けてうろたえる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            쳐다보다 </td>
+
+
+
+          <td>
+            じろじろ見る </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            길가에서 큰소리를 지르니까 사람들이 이상한 듯이 쳐다본다. </td>
+
+          <td>
+            道で大声を出したものだから通りすがりの人々がじろじろ見ている。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            쓰다 </td>
+
+
+
+          <td>
+            （帽子などを）かぶる、（眼鏡を）かける </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            안경을 쓰다. </td>
+
+          <td>
+            眼鏡をかける </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            초인종 </td>
+
+
+
+          <td>
+            ドアベル </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            현관의 초인종을 누르다. </td>
+
+          <td>
+            ポーチのドアベルを押します。 </td>
+          <td>
+            招人鐘 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            갇히다 </td>
+
+
+
+          <td>
+            閉じ込められます </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            유치장에 갇히다. </td>
+
+          <td>
+            留置場いに拘禁される。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            질리다 </td>
+
+
+
+          <td>
+            怯える </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            겁에 질려 온몸을 떨고 있다. </td>
+
+          <td>
+            恐怖に怯えて全身を震わせている。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            넘다 </td>
+
+
+
+          <td>
+            超える </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            이 미터가 넘는 큰 파도. </td>
+
+          <td>
+            2メーターを超える大波 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            들르다 </td>
+
+
+
+          <td>
+            立ち寄る </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            돌아가는 길에 들르겠네. </td>
+
+          <td>
+            帰りがけに寄るよ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꼼짝 </td>
+
+
+
+          <td>
+            ちょっと動くようす </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            꼼짝하면 죽이겠다. </td>
+
+          <td>
+            ちょっとでも動いたら殺すぞ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            가두다 </td>
+
+
+
+          <td>
+            閉じ込めます </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            새를 새장에 가두다. </td>
+
+          <td>
+            鳥を鳥かごに入れる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            처하다 </td>
+
+
+
+          <td>
+            (ある状況に)身を置く、置かれる </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            곤경에 처한 몸. </td>
+
+          <td>
+            窮状に置かれている身。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            여태 </td>
+
+
+
+          <td>
+            今まで、いまだに </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            여태 그것도 몰랐어? </td>
+
+          <td>
+            今までそれも知らなかったのか？ </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            떨리다 </td>
+
+
+
+          <td>
+            (寒さ・怖さ・悔しさで）震える </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            손발이 떨리다. </td>
+
+          <td>
+            手と足が震えます </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            노려보다 </td>
+
+
+
+          <td>
+            にらむ、にらみつける </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            눈을 부라리고 노려보다. </td>
+
+          <td>
+            目をむいてにらむ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            켤레 </td>
+
+
+
+          <td>
+            履物、ポソンなどを数える語:足 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            고무신 한 켤레 </td>
+
+          <td>
+            ゴム靴一足 </td>
+          <td>
+            固有名詞につく助数詞 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            모락모락 </td>
+
+
+
+          <td>
+            もくもく、ゆらゆら </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            굴뚝에서 연기가 모락모락 피어 오른다. </td>
+
+          <td>
+            煙突から煙がもくもく立ち上がる。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            서른 </td>
+
+
+
+          <td>
+            30 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            나도 벌써 서른이야. </td>
+
+          <td>
+            私もすでに30です。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            배웅 </td>
+
+
+
+          <td>
+            見送り </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            공황까지 배웅하러 나온 사람 </td>
+
+          <td>
+            空港まで見送りにきた人 </td>
+          <td>
+            反対語:마중 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            딱하다 </td>
+
+
+
+          <td>
+            気の毒だ、かわいそうだ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            부모 잃은 자식들이 딱하다. </td>
+
+          <td>
+            父母を亡くした子供たちがかわいそうだ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            나부끼다 </td>
+
+
+
+          <td>
+            はためく </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            만국기가 나부끼다. </td>
+
+          <td>
+            万国旗がはためく。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            비틀거리가 </td>
+
+
+
+          <td>
+            ふらつく </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            주정꾼이 비틀거리며 술집을 나왔다. </td>
+
+          <td>
+            酔っ払いがふらつきながら飲み屋から出て来た。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="dataContent dataNone">
+    <table border="1">
+
+
+
+      <tbody>
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            単語 </td>
+
+
+
+          <td>
+            単語日本語 </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            例文 </td>
+
+          <td>
+            例文日本語 </td>
+          <td>
+            備考欄 </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            알차다 </td>
+
+
+
+          <td>
+            内容が充実している </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            알찬 하루 </td>
+
+          <td>
+            充実した一日 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            호프집 </td>
+
+
+
+          <td>
+            ビヤガーデン </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            호프집에서 회식을 했어요. </td>
+
+          <td>
+            ビヤガーデンで会食をしました。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            쩔쩔매다 </td>
+
+
+
+          <td>
+            圧倒されてたじろぐ </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            덕구 어머니가 어찌할지 홍정두가 어찌 쩔쩔맬지 안 봐도 훤했다. </td>
+
+          <td>
+            トックのお母さんがどうするか、ホン・チョンドがどんなふうにたじろぐか見なくても明らかだった。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            귀띔하다 </td>
+
+
+
+          <td>
+            耳打ちする </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            저녁에 그 여자와 같이 오라고 살짝 귀띔해 주었다. </td>
+
+          <td>
+            夕方にその女と一緒に来いとこっそり耳打ちしてやった。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            자르다 </td>
+
+
+
+          <td>
+            (言葉、仕事などの)区切りをつける、けりをつける </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            딱 잘라서 말해 봐. </td>
+
+          <td>
+            くどくど言わずに手短に話してみろ。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            사자 </td>
+
+
+
+          <td>
+            ライオン </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            나는 동물 중에서 사자가 제일 좋아. </td>
+
+          <td>
+            私は動物の間でライオンが好きです。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            시다 </td>
+
+
+
+          <td>
+            酸っぱい </td>
+
+
+          <td onclick="speakData(this)" class="clkBtn">
+            오렌지 주스가 너무 셔요. </td>
+
+          <td>
+            オレンジジュースが酸っぱ過ぎます。 </td>
+          <td>
+          </td>
+
+
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <script>
+
+    iniCSSSet();
+    var tdOLD;
+    var voiceSelect = document.querySelector('#tts-select');
+    var voices = speechSynthesis.getVoices();
+    var osAndroid = false;
+    var ua = window.navigator.userAgent.toLocaleLowerCase();
+    if (ua.indexOf("android") !== -1) {
+      osAndroid = true;
+      console.log(ua);
+      console.log(ua.indexOf("android"));
+    }
+
+
+
+
+
+    let select = document.querySelector('[name="sheetSelect"]');
+
+    select.onchange = event => {
+      selectClear();
+      var selIndex = select.selectedIndex;
+      console.log(select.selectedIndex);
+      var classElement = document.getElementsByClassName('dataContent');
+      for (let i = 0; i < classElement.length; i++) {
+        if (selIndex === i) {
+
+          classElement[i].classList.add("dataShow");
+          classElement[i].classList.remove("dataNone");
+        } else {
+          classElement[i].classList.add("dataNone");
+          classElement[i].classList.remove("dataShow");
+        }
+
+      }
+    }
+    // 検索機能
+    function serchSelect() {
+      // var classElement = document.getElementsByClassName('dataContent');
+      var classElement = document.querySelector('.dataShow');
+      input = document.getElementById('myInput');
+      var inputText = input.value;
+      // var inputText = "内容";
+      var tr = classElement.getElementsByTagName('tr');
+      var btnSerch = document.getElementById('btnSerch');
+     
+      var i;
+      for (i = 1; i < tr.length; i++) {
+        var swMatch = false;
+        var tds = tr[i].getElementsByTagName("td");
+        for (var j = 0; j < tds.length; j++) {
+          if (tds[j].textContent.indexOf(inputText) > -1) {
+            swMatch = true;
+           
+          }
+
+        }
+        if (swMatch) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none"
+        }
+      }
+      
+    }
+    // セレクト状態をクリア処理
+    function selectClear() {
+      input = document.getElementById('myInput');
+      input.value = '';
+      var classElement = document.querySelector('.dataShow');
+      
+      var tr = classElement.getElementsByTagName('tr');
+      
+      var i;
+      for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "";
+        
+        
+      }
+
+    }
+
+
+    function fetchVoices(cb) {
+      if (!voices || !voices.length) {
+        setTimeout(function () {
+          voices = speechSynthesis.getVoices();
+          fetchVoices(cb);
+        }, 0);
+      }
+      else {
+        cb(voices);
+      }
+    }
+
+    function drawButtons(voices) {
+      for (i = 0; i < voices.length; i++) {
+        if (!osAndroid) {
+
+          if (voices[i].lang != 'ko-KR') {
+            continue;
+          }
+          var option = document.createElement('option');
+          option.textContent = voices[i].name;
+          option.setAttribute('data-lang', voices[i].lang);
+          option.setAttribute('data-name', voices[i].name);
+          voiceSelect.appendChild(option);
+          console.log(option);
+        }
+
+      }
+
+    }
+
+    function speakData(param1, param2) {
+
+      if (param1 instanceof HTMLTableCellElement) {
+        const td = param1;
+
+        if (tdOLD === undefined) {
+          tdOLD = param1;
+        } else {
+          tdOLD.style.backgroundColor = null;
+          tdOLD = param1;
+        }
+
+
+
+        const synth = window.speechSynthesis;
+        const column = td.cellIndex;
+        const tr = td.parentNode;
+        const row = tr.sectionRowIndex;
+
+        console.log("行row=" + row + " 列column=" + column);
+        console.log(td.textContent);
+        const utterence = new SpeechSynthesisUtterance();
+
+        td.style.backgroundColor = 'cyan';
+        console.log(utterence);
+
+        if (osAndroid) {
+          speakAndroid(td.textContent);
+
+        } else {
+          var selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
+          var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+          speak(selectedOption, td.textContent);
+
+
+
+        }
+
+      }
+
+    }
+    function speak(voiceName, speakText) {
+      var uttr = new SpeechSynthesisUtterance(speakText);
+
+
+      if (!voices || !voices.length) {
+        voices = speechSynthesis.getVoices();
+      }
+      voices.forEach(function (v, i) {
+        if (v.name == voiceName) uttr.voice = v;
+      });
+      uttr.rate = speakSpeedRate();
+      speechSynthesis.cancel();
+      speechSynthesis.speak(uttr);
+    }
+    function speakAndroid(speakText) {
+      var uttr = new SpeechSynthesisUtterance(speakText);
+      uttr.lang = "ko-KR";
+      uttr.rate = 2.0;
+      uttr.pitch = 1.0;
+      uttr.rate = speakSpeedRate();
+      speechSynthesis.cancel();
+      speechSynthesis.speak(uttr);
+    }
+
+    function iniCSSSet() {
+      var classElement = document.getElementsByClassName('dataContent');
+      classElement[0].classList.add("dataShow");
+      for (let i = 1; i < classElement.length; i++) {
+        classElement[i].classList.add("dataNone");
+      }
+
+    }
+
+    function speakSpeedRate() {
+
+      let select = document.querySelector('[name="speechSpeed"]');
+
+      var rate = parseFloat(select.selectedOptions[0].value);
+      return rate;
+
+    }
+
+    fetchVoices(drawButtons);
+
+
+  </script>
+
+
+</body>
+
+</html>
